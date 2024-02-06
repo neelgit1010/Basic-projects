@@ -1,6 +1,10 @@
 const hit = document.getElementById('target');
 let rn = 0;
 let score = document.getElementById('score');
+let curr = 0;
+let timer = 6;
+let play = true;
+const panel = document.getElementById('panel');
 
 function createBubbles() {
     let element = "";
@@ -10,7 +14,7 @@ function createBubbles() {
         element += `<div id="bubble">${rn}</div>`;
     }
 
-    document.getElementById('panel').innerHTML = element
+    panel.innerHTML = element;
 
 }
 
@@ -21,7 +25,6 @@ function makeTargets() {
 
 
 function invokeCounter() {
-    let timer = 25;
     const gameOver = setInterval(() => {
         if (timer >= 0) {
             if (timer <= 15) {
@@ -31,26 +34,46 @@ function invokeCounter() {
             timer--;
         } else {
             clearInterval(gameOver);
+            panel.innerHTML = `<div id="gameover"> Game Over! <br> You Scored : ${score.innerText}</div>`;
+            play = false;
         }
     }, 1000);
 
 }
 
 
-document.getElementById('panel').addEventListener('click',(bubble) =>{
-    // console.log(typeof bubble.target.innerText);
-    // console.log(typeof rn);
-    if(rn === Number(bubble.target.innerText)){
-        // console.log("Matched");
-        
+function playGame() {
+    document.getElementById('panel').addEventListener('click', (bubble) => {
+        // console.log(typeof bubble.target.innerText);
+        // console.log(typeof rn);
+        if (rn === Number(bubble.target.innerText)) {
+            // console.log("Matched");
+            curr += 10;
+            score.innerText = curr;
+        }
+        createBubbles();
+    });
+}
 
-    }else{
-        // console.log("Not matched");
-    }
+
+if(play){
     createBubbles();
-})
+    invokeCounter();
+    makeTargets();
+    playGame();
+}else{
 
+    console.log('Ran');
+    var x = document.createElement("BUTTON");
+    var t = document.createTextNode("Click me");
+    x.appendChild(t);
+    panel.appendChild(x);
 
-createBubbles();
-invokeCounter();
-makeTargets();
+    x.addEventListener('click', () =>{
+        location.reload();
+        timer = 6;
+        curr = 0;
+        play=true
+    })
+    // location.reload();
+}
