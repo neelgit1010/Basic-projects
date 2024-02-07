@@ -2,7 +2,7 @@ const hit = document.getElementById('target');
 let rn = 0;
 let score = document.getElementById('score');
 let curr = 0;
-let timer = 6;
+let timer = 2;
 // let play = true;
 const panel = document.getElementById('panel');
 
@@ -35,13 +35,14 @@ function invokeCounter() {
         } else {
 
             let end = document.createElement('div');
+            end.id = "end";
             end.innerHTML=`<h1>Game Over! <br> You Scored : ${score.innerText}</h1>`;
             panel.innerHTML='';
             panel.appendChild(end);
             clearInterval(gameOver);
-            let restart = document.createElement('button');
-            let t = document.createTextNode('Restart Game');
-            restart.appendChild(t);
+            let restart = document.createElement('div');
+            restart.innerHTML=`Restart Game`;
+            restart.id = 'restartbtn';
             end.appendChild(restart);
             restart.addEventListener('click',() =>{
                 location.reload();
