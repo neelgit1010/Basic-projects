@@ -3,7 +3,6 @@ let rn = 0;
 let score = document.getElementById('score');
 let curr = 0;
 let timer = 2;
-// let play = true;
 const panel = document.getElementById('panel');
 
 function createBubbles() {
@@ -67,24 +66,9 @@ function playGame() {
 }
 
 
-// if(play){
-    createBubbles();
-    invokeCounter();
-    makeTargets();
-    playGame();
-// }else{
 
-//     console.log('Ran');
-//     var x = document.createElement("BUTTON");
-//     var t = document.createTextNode("Click me");
-//     x.appendChild(t);
-//     document.body.appendChild(x);
+createBubbles();
+invokeCounter();
+makeTargets();
+playGame();
 
-//     x.addEventListener('click', () =>{
-//         location.reload();
-//         timer = 6;
-//         curr = 0;
-//         play=true
-//     })
-//     // location.reload();
-// }
