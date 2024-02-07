@@ -62,9 +62,8 @@ html, body{
    flex-wrap: wrap;
    width: 100%;
    height: calc(100%-50px);
-   align-items: center;
+   align-items: baseline;
    justify-content: center;
-   /* background-color: red; */
 }
 
 #bubble{
@@ -88,8 +87,3 @@ html, body{
     color: rgb(15, 56, 9);
 }
 
-#gameover{
-    font-size: 20px;
-    color: rgb(157, 16, 16);
-    font-weight: 600;
-}
