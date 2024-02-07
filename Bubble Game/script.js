@@ -3,7 +3,7 @@ let rn = 0;
 let score = document.getElementById('score');
 let curr = 0;
 let timer = 6;
-let play = true;
+// let play = true;
 const panel = document.getElementById('panel');
 
 function createBubbles() {
@@ -33,9 +33,19 @@ function invokeCounter() {
             document.getElementById('counter').innerText = `${timer}`;
             timer--;
         } else {
+
+            let end = document.createElement('div');
+            end.innerHTML=`<h1>Game Over! <br> You Scored : ${score.innerText}</h1>`;
+            panel.innerHTML='';
+            panel.appendChild(end);
             clearInterval(gameOver);
-            panel.innerHTML = `<div id="gameover"> Game Over! <br> You Scored : ${score.innerText}</div>`;
-            play = false;
+            let restart = document.createElement('button');
+            let t = document.createTextNode('Restart Game');
+            restart.appendChild(t);
+            end.appendChild(restart);
+            restart.addEventListener('click',() =>{
+                location.reload();
+            })
         }
     }, 1000);
 
@@ -56,24 +66,24 @@ function playGame() {
 }
 
 
-if(play){
+// if(play){
     createBubbles();
     invokeCounter();
     makeTargets();
     playGame();
-}else{
+// }else{
 
-    console.log('Ran');
-    var x = document.createElement("BUTTON");
-    var t = document.createTextNode("Click me");
-    x.appendChild(t);
-    panel.appendChild(x);
+//     console.log('Ran');
+//     var x = document.createElement("BUTTON");
+//     var t = document.createTextNode("Click me");
+//     x.appendChild(t);
+//     document.body.appendChild(x);
 
-    x.addEventListener('click', () =>{
-        location.reload();
-        timer = 6;
-        curr = 0;
-        play=true
-    })
-    // location.reload();
-}
+//     x.addEventListener('click', () =>{
+//         location.reload();
+//         timer = 6;
+//         curr = 0;
+//         play=true
+//     })
+//     // location.reload();
+// }
