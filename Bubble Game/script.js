@@ -2,8 +2,8 @@ const hit = document.getElementById('target');
 let rn = 0;
 let score = document.getElementById('score');
 let curr = 0;
-let timer = 2;
-const panel = document.getElementById('panel');
+let timer = 6;
+let panel = document.getElementById('panel');
 
 function createBubbles() {
     let element = "";
@@ -33,17 +33,28 @@ function invokeCounter() {
             timer--;
         } else {
 
+            // panel.removeEventListener('click', (bubble) => {
+            //     // console.log(typeof bubble.target.innerText);
+            //     // console.log(typeof rn);
+            //     if (rn === Number(bubble.target.innerText)) {
+            //         // console.log("Matched");
+            //         curr += 10;
+            //         score.innerText = curr;
+            //     }
+            //     createBubbles();
+            // });
+
             let end = document.createElement('div');
             end.id = "end";
-            end.innerHTML=`<h1>Game Over! <br> You Scored : ${score.innerText}</h1>`;
-            panel.innerHTML='';
+            end.innerHTML = `<h1>Game Over! <br> You Scored : ${score.innerText}</h1>`;
+            panel.innerHTML = '';
             panel.appendChild(end);
             clearInterval(gameOver);
             let restart = document.createElement('div');
-            restart.innerHTML=`Restart Game`;
+            restart.innerHTML = `Restart Game`;
             restart.id = 'restartbtn';
             end.appendChild(restart);
-            restart.addEventListener('click',() =>{
+            restart.addEventListener('click', () => {
                 location.reload();
             })
         }
@@ -53,7 +64,7 @@ function invokeCounter() {
 
 
 function playGame() {
-    document.getElementById('panel').addEventListener('click', (bubble) => {
+    panel.addEventListener('click', (bubble) => {
         // console.log(typeof bubble.target.innerText);
         // console.log(typeof rn);
         if (rn === Number(bubble.target.innerText)) {
@@ -63,6 +74,7 @@ function playGame() {
         }
         createBubbles();
     });
+
 }
 
 
