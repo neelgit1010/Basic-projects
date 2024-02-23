@@ -9,3 +9,14 @@ function createNote() {
     imgDel.src = 'delete.png';
     main.appendChild(input).appendChild(imgDel);
 }
+
+function storeData() {
+    localStorage.setItem('notes',main.innerHTML);
+}
+
+main.addEventListener('click', (e) =>{
+    if(e.target.tagName === 'IMG'){
+        storeData();
+        e.target.parentElement.remove();
+    }
+})
