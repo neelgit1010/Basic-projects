@@ -37,7 +37,7 @@ body{
     cursor: pointer;
 }
 
-#create{
+#create, #save{
     width: 90px;
     height: 50px;
     padding: 15px;
@@ -57,9 +57,13 @@ body{
     height: 15px;
 }
 
-#create:hover{
+#create:hover, #save:hover{
     cursor: pointer;
     background: #9b1ea3;
+}
+
+#save{
+    margin: 20px 120px;
 }
 
 img{
