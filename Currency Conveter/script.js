@@ -1,10 +1,11 @@
-const baseUrl = "https://web.archive.org/web/20230530004700/https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+const baseUrl = "https://2024-03-06.currency-api.pages.dev/v1/currencies";
 
 const dropdowns = document.querySelectorAll('.dropdown select');
 const button = document.querySelector('form button');
 const fromCurr = document.querySelector('.from .selection select')
 const toCurr = document.querySelector('.to .selection select')
 let result = document.querySelector('.result p');
+const swapBtn = document.querySelector();
 
 // we've two selects...'from' and 'to'
 // so appending all countryList data to both the selects
@@ -42,11 +43,18 @@ button.addEventListener('click', async e => {
         input.value = 1;
     }
 
-    const currUrl = `${baseUrl}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+    const currUrl = `${baseUrl}/${fromCurr.value.toLowerCase()}.json`;
     console.log(fromCurr.value, toCurr.value, result);
-    // result.innerText = `${input.val} USD = `
-
+    
+    // fetching the JSON data using currency API
     const rawUrl = await fetch(currUrl);
-    const data = await JSON.parse(rawUrl);
-    console.log(rawUrl, currUrl);
+    //converting JSON object to JS object
+    const data = await rawUrl.json();
+    console.log(data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()]);
+
+    let convertedData = (data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()] * parseInt(input.value)).toFixed(2);
+
+    result.innerText = `${input.value} ${fromCurr.value} = ${convertedData} ${toCurr.value}`;
+
+    console.log(convertedData, typeof convertedData);
 });
