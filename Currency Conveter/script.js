@@ -5,7 +5,7 @@ const button = document.querySelector('form button');
 const fromCurr = document.querySelector('.from .selection select')
 const toCurr = document.querySelector('.to .selection select')
 let result = document.querySelector('.result p');
-const swapBtn = document.querySelector();
+const swap = document.querySelector('form .dropdown #swap');
 
 // we've two selects...'from' and 'to'
 // so appending all countryList data to both the selects
@@ -36,8 +36,7 @@ const updateFlag = (evt) => {
     updatedImg.src = flagUrl;   
 }
 
-button.addEventListener('click', async e => {
-    e.preventDefault();
+const getResult = async () => {
     const input = document.querySelector('form input');
     if (input.value < 1 || input.value === "") {
         input.value = 1;
@@ -57,4 +56,19 @@ button.addEventListener('click', async e => {
     result.innerText = `${input.value} ${fromCurr.value} = ${convertedData} ${toCurr.value}`;
 
     console.log(convertedData, typeof convertedData);
+}
+
+const swapData = () => {
+    let temp = fromCurr.value;
+    fromCurr.value = toCurr.value;
+    toCurr.value = temp;
+
+    getResult();
+}
+
+button.addEventListener('click', async e => {
+    e.preventDefault();
+    getResult();
 });
+
+swap.addEventListener('click', swapData)

@@ -80,6 +80,7 @@ form input{
 
 .dropdown i{
     font-size: 20px;
+    cursor: pointer;
 }
 
 .selection{
